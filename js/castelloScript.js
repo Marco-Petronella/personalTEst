@@ -41,3 +41,18 @@ const invitati = [
   { firstName: "Beatrice", invito: false, age: 5 },
   { firstName: "Davide", invito: true, age: 34 },
 ];
+
+message = "";
+for (let i=0; i<10; i++) {
+    if (invitati[i].invito) {
+        message = `Benvenuto/a ${invitati[i].firstName}, l'onore è nostro.`;
+    } else if (invitati[i].age<18) {
+        message= `Spiacente ${invitati[i].firstName}, sei troppo giovane per passare;` 
+    } else if (invitati[i].age>65) {
+        message= `Spiacente ${invitati[i].firstName}, l'ingresso è riservato a chi ha un invito dopo una certa età` 
+    } else {
+        message = `Prego ${invitati[i].firstName}, puoi passare.`;
+    }
+    console.log(invitati[i].firstName, invitati[i].invito, invitati[i].age);
+    console.log(message);
+}
