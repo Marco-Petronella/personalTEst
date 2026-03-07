@@ -53,6 +53,5 @@ for (let i=0; i<10; i++) {
     } else {
         message = `Prego ${invitati[i].firstName}, puoi passare.`;
     }
-    console.log(invitati[i].firstName, invitati[i].invito, invitati[i].age);
     console.log(message);
 }
