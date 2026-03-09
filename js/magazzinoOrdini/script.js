@@ -1,7 +1,4 @@
 /*
-Fase 2: Gestione dell'Urgenza
-Si è scoperto che l'ordine di Annamaria è urgente. Trovalo nella codaSpedizione (se presente), rimuovilo dalla sua posizione e spostalo all'inizio della coda.
-
 Fase 3: Elaborazione Resi
 Prendi i prodotti dall'array resiDaGestire uno alla volta (estraendoli dall'array) e aggiungili nuovamente all'inventario incrementando le scorte.
 
@@ -32,18 +29,26 @@ const codaSpedizione = [];
 // Array di resi da processare alla fine
 const resiDaGestire = ["smartphone", "tablet", "smartphone"];
 
-// Fase 1: Evasione Ordini (Ciclo)
-// Usa la logica del messaggio precedente (prezzi: 600, 400, 50). Listino Prezzi: Smartphone: 600€ Tablet: 400€ Cuffie: 50€
-// Se l'ordine è valido, sottrai dall'inventario e aggiungi l'oggetto ordine (o una stringa descrittiva) alla fine dell'array codaSpedizione.
+/*Fase 1: Evasione Ordini (Ciclo)
+ Usa la logica del messaggio precedente (prezzi: 600, 400, 50). Listino Prezzi: Smartphone: 600€ Tablet: 400€ Cuffie: 50€
+ Se l'ordine è valido, sottrai dall'inventario e aggiungi l'oggetto ordine (o una stringa descrittiva) alla fine dell'array codaSpedizione. */
 
 for (i=0; i<ordini.length; i++) {
     console.log(ordini[i]);
     codaSpedizione.push(evadiOrdine(ordini[i]));
+    console.log(codaSpedizione[i]);
+    
 }
+
 
 function evadiOrdine(ordine) {
     const costoOrdine = spesaOrdine(ordine.prodotto, ordine.quantità)
-    console.log(costoOrdine);
+    if (costoOrdine <= ordine.budget) { 
+        const inventarioOK=checkInventario(ordine.prodotto, ordine.quantità)
+        if (inventarioOK=="OK") { return `Ordine di ${ordine.cliente} per ${ordine.quantità} ${ordine.prodotto} aggiunto`; }
+        else return inventarioOK;
+    }
+    else { return `Budget di ${ordine.cliente} insufficiente per il suo ordine`}
 }
 
 function spesaOrdine(prodotto, quantità) {
@@ -51,4 +56,33 @@ function spesaOrdine(prodotto, quantità) {
     else if (prodotto == "tablet") return quantità*400;
     else if (prodotto == "cuffie") return quantità*50;
     else return 0;
+}
+
+function checkInventario(prodotto, quantità) {
+    if (prodotto == "smartphone") {
+        if (inventario.smartphone < quantità) return "Smarthphone insufficienti";
+        else {
+            inventario.smartphone = inventario.smartphone-quantità;
+        }
+    }
+    else if (prodotto == "tablet") {
+        if (inventario.tablet < quantità) return "Tablet insufficienti";
+        else {
+            inventario.tablet = inventario.tablet-quantità;
+        }
+    }
+    else {
+        if (inventario.cuffie < quantità) return "Cuffie insufficienti";
+        else {
+            inventario.cuffie = inventario.tablet-quantità;
+        }
+    }
+    return "OK";
+}
+/* Fase 2: Gestione dell'Urgenza
+Si è scoperto che l'ordine di Annamaria è urgente. Trovalo nella codaSpedizione (se presente), 
+rimuovilo dalla sua posizione e spostalo all'inizio della coda.*/
+
+for (let i=0; i<codaSpedizione.length;i++) {
+    
 }
