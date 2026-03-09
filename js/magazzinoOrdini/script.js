@@ -38,4 +38,17 @@ const resiDaGestire = ["smartphone", "tablet", "smartphone"];
 
 for (i=0; i<ordini.length; i++) {
     console.log(ordini[i]);
+    codaSpedizione.push(evadiOrdine(ordini[i]));
+}
+
+function evadiOrdine(ordine) {
+    const costoOrdine = spesaOrdine(ordine.prodotto, ordine.quantità)
+    console.log(costoOrdine);
+}
+
+function spesaOrdine(prodotto, quantità) {
+    if (prodotto == "smartphone") return quantità*600;
+    else if (prodotto == "tablet") return quantità*400;
+    else if (prodotto == "cuffie") return quantità*50;
+    else return 0;
 }
