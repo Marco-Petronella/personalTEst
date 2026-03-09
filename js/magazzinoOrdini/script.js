@@ -1,10 +1,8 @@
-
 const inventario = {
   smartphone: 5,
   tablet: 3,
   cuffie: 10,
 };
-
 const ordini = [
   { cliente: "Roberto", prodotto: "smartphone", quantità: 2, budget: 1500 },
   { cliente: "Lucia", prodotto: "tablet", quantità: 4, budget: 2000 },
@@ -15,6 +13,7 @@ const ordini = [
 
 // Array vuoto dove sposterai gli ordini confermati
 const codaSpedizione = [];
+const prezzoOrdini = [];
 
 // Array di resi da processare alla fine
 const resiDaGestire = ["smartphone", "tablet", "smartphone"];
@@ -23,20 +22,24 @@ const resiDaGestire = ["smartphone", "tablet", "smartphone"];
  Usa la logica del messaggio precedente (prezzi: 600, 400, 50). Listino Prezzi: Smartphone: 600€ Tablet: 400€ Cuffie: 50€
  Se l'ordine è valido, sottrai dall'inventario e aggiungi l'oggetto ordine (o una stringa descrittiva) alla fine dell'array codaSpedizione. */
 
-for (i = 0; i < ordini.length; i++) {
-  codaSpedizione.push(evadiOrdine(ordini[i]));
+for (let i = 0; i < ordini.length; i++) {
+  const ordine = evadiOrdine(ordini[i]);
+  if (ordine != "KO") codaSpedizione.push(ordine);
 }
+console.log("ordini evasi: ");
 console.log(codaSpedizione);
 
 function evadiOrdine(ordine) {
   const costoOrdine = spesaOrdine(ordine.prodotto, ordine.quantità);
   if (costoOrdine <= ordine.budget) {
-    const inventarioOK = checkInventario(ordine.prodotto, ordine.quantità);
+    const inventarioOK = checkInventario(ordine.prodotto, ordine.quantità, ordine.cliente);
     if (inventarioOK == "OK") {
-      return `Ordine di ${ordine.cliente} per ${ordine.quantità} ${ordine.prodotto} aggiunto`;
+      prezzoOrdini.push(costoOrdine);
+      return (`Ordine di ${ordine.cliente} per ${ordine.quantità} ${ordine.prodotto} aggiunto`);
     } else return inventarioOK;
   } else {
-    return `Budget di ${ordine.cliente} insufficiente per il suo ordine`;
+    console.log(`Budget di ${ordine.cliente} insufficiente per il suo ordine`);
+    return "KO";
   }
 }
 
@@ -47,21 +50,27 @@ function spesaOrdine(prodotto, quantità) {
   else return 0;
 }
 
-function checkInventario(prodotto, quantità) {
+function checkInventario(prodotto, quantità, cliente) {
   if (prodotto == "smartphone") {
-    if (inventario.smartphone < quantità) return "Smarthphone insufficienti";
-    else {
+    if (inventario.smartphone < quantità) {
+      console.log("Smarthphone insufficienti per l'ordine di " + cliente);
+      return "KO";
+    } else {
       inventario.smartphone = inventario.smartphone - quantità;
     }
   } else if (prodotto == "tablet") {
-    if (inventario.tablet < quantità) return "Tablet insufficienti";
-    else {
+    if (inventario.tablet < quantità) {
+      console.log("Tablet insufficienti per l'ordine di " + cliente);
+      return "KO";
+    } else {
       inventario.tablet = inventario.tablet - quantità;
     }
   } else {
-    if (inventario.cuffie < quantità) return "Cuffie insufficienti";
-    else {
-      inventario.cuffie = inventario.tablet - quantità;
+    if (inventario.cuffie < quantità) {
+      console.log("cuffie insufficienti per l'ordine di " + cliente);
+      return "KO";
+    } else {
+      inventario.cuffie = inventario.cuffie - quantità;
     }
   }
   return "OK";
@@ -72,12 +81,11 @@ rimuovilo dalla sua posizione e spostalo all'inizio della coda.*/
 
 for (let i = 0; i < codaSpedizione.length; i++) {
   if (codaSpedizione[i].includes("Annamaria")) {
-    supportString = codaSpedizione[i];
+    const supportString = codaSpedizione[i];
     codaSpedizione.splice(i, 1);
     codaSpedizione.unshift(supportString);
   }
 }
-console.log(codaSpedizione);
 
 /*
 Fase 3: Elaborazione Resi
@@ -85,14 +93,14 @@ Prendi i prodotti dall'array resiDaGestire uno alla volta (estraendoli dall'arra
 e aggiungili nuovamente all'inventario incrementando le scorte.
 */
 
-for (let i = 0; i < resiDaGestire.length; i++) {
-  elaboraReso(resiDaGestire[i]);
+while (resiDaGestire.length>0) {
+  elaboraReso(resiDaGestire.shift());
 }
 
 function elaboraReso(reso) {
-  if ((reso = "smarthphone")) inventario.smartphone++;
-  else if ((reso = "tablet")) inventario.tablet++;
-  else if ((reso = "cuffie")) inventario.cuffie++;
+  if (reso == "smartphone") inventario.smartphone++;
+  else if (reso == "tablet") inventario.tablet++;
+  else if (reso == "cuffie") inventario.cuffie++;
   else console.log("reso non valido");
 }
 
@@ -102,4 +110,13 @@ Stampa l'inventario aggiornato.
 Stampa la codaSpedizione finale.
 Calcola il guadagno totale (solo degli ordini rimasti in coda).
 */
+
+console.log(inventario);
+console.log(codaSpedizione);
+let sommaOrdini = 0;
+for (let i=0; i<prezzoOrdini.length; i++) {
+    sommaOrdini=sommaOrdini+prezzoOrdini[i]
+}
+console.log("la somma di tutti gli ordini è di €" + sommaOrdini);
+
 
