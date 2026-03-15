@@ -7,3 +7,24 @@
     max-width: 1080px;
     margin: auto, 0;
 }
+
+.card {
+    margin-bottom: 2rem;
+}
+
+#box_colored {
+    margin: 0 auto;
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    background-color: rgb(20, 20, 20);
+ 
+}
+.bottoni {
+    display: flex;
+    justify-content: center;
+}
+.btn {
+    margin: 10px
+}

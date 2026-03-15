@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bootstrap Site</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Site</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
-<h1>Esercizi 1</h1>
-<section class="container" id="counter_button">
-<div class="card" style="width:18rem;">
-  <div class="card-body">
-    <h5 class="card-title">Contatore</h5>
-    <p class="card-text" id="counter">0</p>
-    <a class="btn btn-primary btn-sm " href="#" role="button" id="counter_up">+</a>
-    <a class="btn btn-primary btn-sm " href="#" role="button" id="counter_down">-</a>
-  </div>
-</div>
+    <header>
+        <h1>Esercizi 1</h1>
+    </header>
+    <main>
+        <section class="container" id="counter_button">
+            <div class="card" style="width:18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Contatore</h5>
+                    <p class="card-text" id="counter">0</p>
+                    <a class="btn btn-primary btn-sm " href="#" role="button" id="counter_up">+</a>
+                    <a class="btn btn-primary btn-sm " href="#" role="button" id="counter_down">-</a>
+                </div>
+            </div>
+        </section>
+        <section class="container">
+            <div id="box_colorato">
+                <div id="box_colored"></div>
+                <div class="bottoni">
+                    <a class="btn btn-primary btn-sm " href="#" role="button" id="box_green">Verde</a>
+                    <a class="btn btn-primary btn-sm " href="#" role="button" id="box_red">Rosso</a>
+                    <a class="btn btn-primary btn-sm " href="#" role="button" id="box_blue">Blu</a>
+                    <a class="btn btn-primary btn-sm " href="#" role="button" id="box_random">Random</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-</section>
-
-<script src="assets/js/counterButton.js"></script>
+    <script src="assets/js/colouredBox.js"></script>
+    <script src="assets/js/counterButton.js"></script>
 </body>
+
 </html>
