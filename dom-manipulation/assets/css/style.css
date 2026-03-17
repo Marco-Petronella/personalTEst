@@ -31,6 +31,6 @@
     margin: 10px
 }
 
-.checked {
+.completed {
     text-decoration: line-through;
 }
